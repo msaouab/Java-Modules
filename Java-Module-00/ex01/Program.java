@@ -7,6 +7,8 @@ public class Program {
 		System.out.print("-> ");
 		try {
 			int number = scanner.nextInt();
+			scanner.close();
+
 			if (number <= 1) {
 				System.err.println("IllegalArgument");
 				System.exit(-1);
@@ -26,7 +28,6 @@ public class Program {
 		} catch (Exception e) {
 			System.out.println("Invalid input");
 		}
-
 		scanner.close();
 	}
 }
