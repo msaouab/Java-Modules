@@ -1,8 +1,8 @@
 # Java-Modules
 
-## Java Module 00
+## [Java Module 00](./Subjects/Java_Module_00.pdf)
 
-### Java ex00
+### Java Exercise 00: Sum of Digits
 
 - Primitive data type in java are: int, byte, short, long, float, double, boolean and char.
 - They stored directly on the stack memory.
@@ -14,3 +14,6 @@
 	-	float: take 32 bits in the memory, represents numbers with fractional parts. Examples include float and double in languages like C, Java, and Python. the default value is 0.
 	-	boolean: take 1 bits in the memory, represents the `true or false`, `0/1`, default value is false.
 	-	char: take 16 bits in the memory, the range possible value is `0 to 65,535`, represents the unicode-encoded characters, the default value is `\u0000` or `null`.
+
+### Exercise 01 : Really Prime Number
+
