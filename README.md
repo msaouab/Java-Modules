@@ -7,3 +7,5 @@
 ### Exercise 01 : Really Prime Number
 
 ### Exercise 02 : Endless Sequence (or not?)
+
+### Exercise 04 : A Bit More of Statistics

@@ -19,6 +19,20 @@ public class Program {
 	}
 
 	/**
+	 * ft_length
+	 * 
+	 * @param array
+	 * @return int
+	 */
+	static int ft_length(String[] array) {
+		int length = 0;
+		for (String s : array) {
+			length++;
+		}
+		return length;
+	}
+
+	/**
 	 * printWeekGrades
 	 * 
 	 * @param weekGrades
@@ -73,7 +87,8 @@ public class Program {
 				} else {
 					gradesScore = line.split("\\s+");
 
-					if (gradesScore.length != 5)
+					int length = ft_length(gradesScore);
+					if (length != 5)
 						printError("IllegalArgument: Exactly 5 tests are required for each week.");
 					int minGrade = Integer.MAX_VALUE;
 					for (String g : gradesScore) {
