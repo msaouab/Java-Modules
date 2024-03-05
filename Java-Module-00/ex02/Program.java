@@ -23,27 +23,21 @@ public class Program {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		try {
-			int coffeeRequest = 0;
-			while (true) {
-				System.out.print("-> ");
+		int coffeeRequest = 0;
+		while (true) {
+			System.out.print("-> ");
 
-				int number = scanner.nextInt();
-				if (number == 42) {
-					System.out.println("Count of coffee-request – " + coffeeRequest);
-					break;
-				}
+			int number = scanner.nextInt();
+			if (number == 42) {
+				System.out.println("Count of coffee-request – " + coffeeRequest);
+				break;
+			}
 
-				int sum = sumOfDigits(number);
-				if (isPrime(sum)) {
-					coffeeRequest++;
-				}
-            }
-
-		} catch (Exception e) {
-			System.err.println("Invalid input");
-		} finally {
-			scanner.close();
+			int sum = sumOfDigits(number);
+			if (isPrime(sum)) {
+				coffeeRequest++;
+			}
 		}
+		scanner.close();
 	}
 }
