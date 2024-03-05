@@ -4,6 +4,7 @@ public class Program {
 
 	/**
 	 * Sorts the frequency array and the chars array
+	 * 
 	 * @param frequency
 	 * @param chars
 	 * @param charLen
@@ -28,6 +29,7 @@ public class Program {
 
 	/**
 	 * Displays the histogram
+	 * 
 	 * @param frequency
 	 * @param chart
 	 * @param chars
@@ -36,7 +38,9 @@ public class Program {
 	public static void displayHistogram(int[] frequency, int[] chart, char[] chars, int charLen) {
 		for (int k = 10; k >= 0; k--) {
 			for (int m = 0; m < 10 && m < charLen; m++) {
-				if (chart[m] == k)
+				if (chart[m] == k && frequency[m] >= 10)
+					System.out.print("|" + frequency[m] + "");
+				if (chart[m] == k && frequency[m] < 10)
 					System.out.print("|" + frequency[m] + " ");
 				if (chart[m] > k)
 					System.out.print("|# ");
