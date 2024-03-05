@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class Program {
+	private static int[] frequency = new int[65535];
+	private static char[] chars = new char[65535];
+	private static int charLen = 0;
 
 	/**
 	 * Sorts the frequency array and the chars array
@@ -9,7 +12,7 @@ public class Program {
 	 * @param chars
 	 * @param charLen
 	 */
-	public static void sortFrequency(int[] frequency, char[] chars, int charLen) {
+	public static void sortFrequency() {
 		int i = 1;
 		while (i < charLen) {
 			int j = i;
@@ -35,7 +38,7 @@ public class Program {
 	 * @param chars
 	 * @param charLen
 	 */
-	public static void displayHistogram(int[] frequency, int[] chart, char[] chars, int charLen) {
+	public static void displayHistogram(int[] chart) {
 		for (int k = 10; k >= 0; k--) {
 			for (int m = 0; m < 10 && m < charLen; m++) {
 				if (chart[m] == k && frequency[m] >= 10)
@@ -60,9 +63,6 @@ public class Program {
 		scanner.close();
 
 		char[] charsArr = input.toCharArray();
-		int frequency[] = new int[65535];
-		char chars[] = new char[65535];
-		int charLen = 0;
 
 		for (int i = 0; i < input.length(); i++) {
 			int counted = 0;
@@ -80,13 +80,12 @@ public class Program {
 			}
 		}
 
-		sortFrequency(frequency, chars, charLen);
+		sortFrequency();
 
 		int chart[] = new int[10];
 		for (int k = 0; k < 10 && k < charLen; k++) {
 			chart[k] = frequency[k] * 10 / frequency[0];
 		}
-
-		displayHistogram(frequency, chart, chars, charLen);
+		displayHistogram(chart);
 	}
 }
