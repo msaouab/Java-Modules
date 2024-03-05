@@ -11,19 +11,25 @@ public class Program {
 		// Create a list of students
 		String[] students = new String[10];
 		int studentCount = 0;
-		System.out.println("-> ");
 		String studentName;
 
-		while (true) {
-			studentName = scanner.nextLine();
-			if (studentName.equals("exit")) {
-				break;
+		int countPoints = 0;
+		try {
+			while (true) {
+				System.out.print("-> ");
+				studentName = scanner.nextLine();
+				if (studentName.equals(".")) {
+					countPoints++;
+				}
+				students[studentCount] = studentName;
+				studentCount++;
+				System.out.println("student: " + studentName);
 			}
-			students[studentCount] = studentName;
-			studentCount++;
-			System.out.println("student: " + studentName);
+		} catch (Exception e) {
+			System.out.println("Exception: " + e);
+		} finally {
+			scanner.close();
+			System.out.println("Finally");
 		}
-
-		scanner.close();
 	}
 }
