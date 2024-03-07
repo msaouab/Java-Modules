@@ -9,3 +9,5 @@
 ### Exercise 02 : Endless Sequence (or not?)
 
 ### Exercise 04 : A Bit More of Statistics
+
+### Exercise 05 : Schedule
