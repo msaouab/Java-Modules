@@ -7,6 +7,7 @@ public class Program {
 	private static final int MAX_WEEKS = 18;
 	private static long colectMinGrade = 0;
 	private static int currentWeek = 0;
+
 	/**
 	 * printError
 	 * 
@@ -25,10 +26,12 @@ public class Program {
 	 * @return void
 	 */
 	static void printWeekGrades() {
-		for (int i = 1; i < currentWeek + 1; i++) {
-			System.out.print("	Week " + i + " ");
-			long arrow = colectMinGrade %= 10;
-			for (int j = 0; j < arrow; j++) {
+		for (int i = 0; i < currentWeek; i++) {
+			int week = i + 1;
+			System.out.print("Week " + week);
+			int minGrade = (int) (colectMinGrade % 10);
+			colectMinGrade /= 10;
+			for (int j = 0; j < minGrade; j++) {
 				System.out.print("=");
 			}
 			System.out.println(">");
@@ -62,10 +65,18 @@ public class Program {
 				colectMinGrade += minGrade;
 			}
 			if (currentWeek == MAX_WEEKS)
-			break;
+				break;
 		}
+		long reverseColectMinGrade = 0;
+		while (colectMinGrade != 0) {
+			int minGrade = (int) (colectMinGrade % 10);
+			reverseColectMinGrade *= 10;
+			reverseColectMinGrade += minGrade;
+			colectMinGrade /= 10;
+		}
+		colectMinGrade = reverseColectMinGrade;
 		printWeekGrades();
-		
+
 		scanner.close();
 	}
 }
