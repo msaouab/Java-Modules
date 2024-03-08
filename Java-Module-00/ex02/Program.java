@@ -34,7 +34,7 @@ public class Program {
 			}
 
 			int sum = sumOfDigits(number);
-			if (isPrime(sum)) {
+			if (isPrime(sum) && sum > 1) {
 				coffeeRequest++;
 			}
 		}
