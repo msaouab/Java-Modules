@@ -49,7 +49,7 @@ public class Program {
 		for (int i = 0; i <= MAX_STUDENTS; i++) {
 			System.out.print("-> ");
 			students[i] = scanner.nextLine();
-			if (students[i].length() > LENGTH_NAME) {
+			if (students[i].length() > LENGTH_NAME || students[i].contains(" ")) {
 				printError("Student name must be less than 10 characters and no spaces.");
 			}
 			if (students[i].equals(".")) {
@@ -142,6 +142,28 @@ public class Program {
 	}
 
 	/**
+	 * isValidAttendance
+	 * 
+	 * @return void
+	 */
+	public static void isValidAttendance() {
+		int isValide = 0;
+		for (int i = 0; i < students.length && students[i] != null; i++) {
+			for (int j = 1; j < 31; j++) {
+				int dayIndex = j % 7 + 1;
+				for (int k = 0; k < 10 && classes[dayIndex][k] != null; k++) {
+					if (attendance[i][j][k][0] != null && attendance[i][j][k][0].equals("HERE")) {
+						isValide++;
+					}
+				}
+			}
+		}
+		if (isValide == 0) {
+			printError("You're entering the attendance of the students.");
+		}
+	}
+
+	/**
 	 * readAttendanceRecording
 	 * 
 	 * @return void
@@ -166,6 +188,7 @@ public class Program {
 			attendance[studentIndex][date][lesson][0] = status;
 			student = scanner.next();
 		}
+		isValidAttendance();
 	}
 
 	/**
