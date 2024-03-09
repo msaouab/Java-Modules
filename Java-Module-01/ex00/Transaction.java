@@ -11,58 +11,66 @@ public class Transaction {
 	private Integer Amount;
 
 	Transaction(User sender, User receiver, String category, Integer amount) {
-		Identifier = UUID.randomUUID();
-		Sender = sender;
-		Receiver = receiver;
-		Category = category;
-		Amount = amount;
-	}
+        setSender(sender);
+        setReceiver(receiver);
+        setCategory(category);
+        setAmount(amount);
+        this.Identifier = UUID.randomUUID();
+    }
 
-	public void setReceiver(User receiver) {
-		Receiver = receiver;
-	}
+    public void setSender(User sender) {
+        if (sender == null) {
+            throw new IllegalArgumentException("Sender cannot be null");
+        }
+        this.Sender = sender;
+    }
 
-	public void setSender(User sender) {
-		Sender = sender;
-	}
+    public void setReceiver(User receiver) {
+        if (receiver == null) {
+            throw new IllegalArgumentException("Receiver cannot be null");
+        }
+        this.Receiver = receiver;
+    }
 
-	public void setCategory(String category) {
-		Category = category;
-	}
+    public void setCategory(String category) {
+        if (category == null || category.isEmpty()) {
+            throw new IllegalArgumentException("Category cannot be empty");
+        }
+        this.Category = category;
+    }
 
-	public void setAmount(Integer amount) {
-		Amount = amount;
-	}
+    public void setAmount(Integer amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount must be positive: " + amount);
+        }
+        this.Amount = amount;
+    }
 
-	public void setIdentifier(UUID identifier) {
-		Identifier = identifier;
-	}
+    public UUID getIdentifier() {
+        return Identifier;
+    }
 
-	public UUID getIdentifier() {
-		return Identifier;
-	}
+    public User getSender() {
+        return Sender;
+    }
 
-	public User getReceiver() {
-		return Receiver;
-	}
+    public User getReceiver() {
+        return Receiver;
+    }
 
-	public User getSender() {
-		return Sender;
-	}
+    public String getCategory() {
+        return Category;
+    }
 
-	public String getCategory() {
-		return Category;
-	}
+    public Integer getAmount() {
+        return Amount;
+    }
 
-	public Integer getAmount() {
-		return Amount;
-	}
-
-	public void displayTransaction() {
-		System.out.println("Transaction ID: " + Identifier);
-		System.out.println("Sender: " + Sender.getName());
-		System.out.println("Receiver: " + Receiver.getName());
-		System.out.println("Category: " + Category);
-		System.out.println("Amount: " + Amount);
+    public void execute() {
+        if (Sender.getBalance() < Amount) {
+            throw new IllegalArgumentException("Sender does not have enough balance for this transaction");
+        }
+        Sender.setBalance(Sender.getBalance() - Amount);
+        Receiver.setBalance(Receiver.getBalance() + Amount);
 	}
 }

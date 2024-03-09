@@ -3,23 +3,63 @@
  */
 public class Program {
 
-	public static void main(String[] args) {
-		try {
-			User user1 = new User(1, "med", -1000);
-			User user2 = new User(2, "saouab", 2000);
-			
-			// display user1 and user2
-			System.out.println("User1: " + user1.getId() + " " + user1.getName() + " " + user1.getBalance());
-			System.out.println("User2: " + user2.getId() + " " + user2.getName() + " " + user2.getBalance());
-			
-			// create a transaction
-			Transaction transaction = new Transaction(user1, user2, "Food", 0);
-			transaction.displayTransaction();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			// TODO: handle exception
-		}
+	// display user details
+	public static void displayUserDetails(User user) {
+		System.out.println("User Identifier: " + user.getId());
+		System.out.println("User Name: " + user.getName());
+		System.out.println("User Balance: " + user.getBalance());
+		System.out.println();
+		// System.out.println("User Identifier: " + user.getId() + " Name: " + user.getName() + " Balance: " + user.getBalance());
+		System.out.println();
+	}
 
-		// display transaction
+	// display transaction details
+	public static void displayTransactionDetails(Transaction transaction) {
+		System.out.println("Transaction Identifier: " + transaction.getIdentifier());
+		System.out.println("Transaction Sender: " + transaction.getSender().getId() + " " + transaction.getSender().getName() + " " + transaction.getSender().getBalance());
+		System.out.println("Transaction Receiver: " + transaction.getReceiver().getId() + " " + transaction.getReceiver().getName() + " " + transaction.getReceiver().getBalance());
+		System.out.println("Transaction Category: " + transaction.getCategory());
+		System.out.println("Transaction Amount: " + transaction.getAmount());
+		System.out.println();
+	}
+
+	public static void main(String[] args) {
+        try {
+            // create user1 and user2
+            User user1 = new User(1, "John", 1000);
+            User user2 = new User(2, "Doe", 2000);
+
+            User user3 = new User();
+            user3.setId(3);
+            user3.setName("Jane");
+            user3.setBalance(3000);
+
+            // display user1, user2, and user3 details before transaction
+			displayUserDetails(user1);
+			displayUserDetails(user2);
+			displayUserDetails(user3);
+
+            // create transactions
+            Transaction transaction1 = new Transaction(user1, user3, "Food", 500);
+            Transaction transaction2 = new Transaction(user2, user3, "Food", 500);
+
+            // display transaction details
+            System.out.println("===> Transaction 1 details:");
+            displayTransactionDetails(transaction1);
+            System.out.println("===> Transaction 2 details:");
+            displayTransactionDetails(transaction2);
+
+            // execute transactions
+            transaction1.execute();
+            transaction2.execute();
+
+            // display user1, user2, and user3 details after transactions
+			displayUserDetails(user1);
+			displayUserDetails(user2);
+			displayUserDetails(user3);
+
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
 	}
 }
