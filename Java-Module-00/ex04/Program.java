@@ -76,7 +76,7 @@ public class Program {
 			for (int j = 0; j < len; j++) {
 				if (chars[j] == c) {
 					frequency[j]++;
-					isFirst = true;
+					isFirst = false;
 					break;
 				}
 			}

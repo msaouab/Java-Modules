@@ -4,73 +4,72 @@ import java.util.UUID;
  * Transaction
  */
 public class Transaction {
-	private UUID Identifier;
-	private User Receiver;
-	private User Sender;
-	private String Category;
-	private Integer Amount;
+    private UUID Id;
+    private User Sender;
+    private User Recipient;
+    private Integer Amount;
+    private String Category;
 
-	Transaction(User sender, User receiver, String category, Integer amount) {
+    Transaction(User sender, User recipient, Integer amount, String category) {
+        setId(UUID.randomUUID());
         setSender(sender);
-        setReceiver(receiver);
-        setCategory(category);
+        setRecipient(recipient);
         setAmount(amount);
-        this.Identifier = UUID.randomUUID();
+        setCategory(category);
+        transferAmount();
+    }
+
+    public void setId(UUID id) {
+        this.Id = id;
     }
 
     public void setSender(User sender) {
-        if (sender == null) {
-            throw new IllegalArgumentException("Sender cannot be null");
-        }
         this.Sender = sender;
     }
 
-    public void setReceiver(User receiver) {
-        if (receiver == null) {
-            throw new IllegalArgumentException("Receiver cannot be null");
-        }
-        this.Receiver = receiver;
-    }
-
-    public void setCategory(String category) {
-        if (category == null || category.isEmpty()) {
-            throw new IllegalArgumentException("Category cannot be empty");
-        }
-        this.Category = category;
+    public void setRecipient(User recipient) {
+        this.Recipient = recipient;
     }
 
     public void setAmount(Integer amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Amount must be positive: " + amount);
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount cannot be negative: " + amount);
         }
         this.Amount = amount;
     }
 
-    public UUID getIdentifier() {
-        return Identifier;
+    public void setCategory(String category) {
+        if (category.length() < 3) {
+            throw new IllegalArgumentException("Category cannot be empty or less than 3 characters: " + category);
+        }
+        this.Category = category;
+    }
+
+    public UUID getId() {
+        return Id;
     }
 
     public User getSender() {
         return Sender;
     }
 
-    public User getReceiver() {
-        return Receiver;
-    }
-
-    public String getCategory() {
-        return Category;
+    public User getRecipient() {
+        return Recipient;
     }
 
     public Integer getAmount() {
         return Amount;
     }
 
-    public void execute() {
-        if (Sender.getBalance() < Amount) {
-            throw new IllegalArgumentException("Sender does not have enough balance for this transaction");
+    public String getCategory() {
+        return Category;
+    }
+
+    public void transferAmount() {
+        if (this.Sender.getBalance() < this.Amount) {
+            throw new IllegalArgumentException("Insufficient balance: " + this.Sender.getBalance());
         }
-        Sender.setBalance(Sender.getBalance() - Amount);
-        Receiver.setBalance(Receiver.getBalance() + Amount);
-	}
+        this.Sender.setBalance(this.Sender.getBalance() - this.Amount);
+        this.Recipient.setBalance(this.Recipient.getBalance() + this.Amount);
+    }
 }

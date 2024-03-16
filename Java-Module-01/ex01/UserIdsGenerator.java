@@ -1,0 +1,6 @@
+/**
+ * UserIdsGenerator
+ */
+public class UserIdsGenerator {
+    
+}
