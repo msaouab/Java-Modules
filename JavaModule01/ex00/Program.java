@@ -1,3 +1,6 @@
+package JavaModule01.ex00;
+
+
 /**
  * Program
  */

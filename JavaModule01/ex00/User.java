@@ -1,3 +1,5 @@
+package JavaModule01.ex00;
+
 /**
  * User
  */

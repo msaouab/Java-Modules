@@ -1,6 +1,0 @@
-/**
- * UserIdsGenerator
- */
-public class UserIdsGenerator {
-    
-}

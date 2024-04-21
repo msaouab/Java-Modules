@@ -1,3 +1,4 @@
+package JavaModule01.ex00;
 import java.util.UUID;
 
 /**
